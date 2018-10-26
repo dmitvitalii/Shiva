@@ -6,4 +6,7 @@
     <string name="component_broadcast">broadcast receiver</string>
     <string name="component_service">service</string>
     <string name="component_activity">Activity</string>
+    <string name="intent_action">Action</string>
+    <string name="intent_category">Category</string>
+    <string name="intent_package">Package</string>
 </resources>

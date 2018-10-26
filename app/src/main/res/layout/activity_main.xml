@@ -13,33 +13,6 @@
 
         <include layout="@layout/content_main" />
 
-        <RadioGroup
-            android:id="@+id/main_component_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/component_activity"
-                android:textAllCaps="true"
-                android:text="@string/component_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <RadioButton
-                android:id="@+id/component_service"
-                android:textAllCaps="true"
-                android:text="@string/component_service"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <RadioButton
-                android:id="@+id/component_broadcast"
-                android:textAllCaps="true"
-                android:text="@string/component_broadcast"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RadioGroup>
     </LinearLayout>
 
     <Button
