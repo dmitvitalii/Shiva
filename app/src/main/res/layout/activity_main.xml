@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp"
-    android:orientation="vertical"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <include layout="@layout/content_main" />
 
+        <com.llollox.androidtoggleswitch.widgets.ToggleSwitch
+            android:id="@+id/switch_components"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:checkedBackgroundColor="@color/colorAccent"
+            app:textToggleCenter="@string/component_service"
+            app:textToggleLeft="@string/component_activity"
+            app:textToggleRight="@string/component_broadcast" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/send_button"
+        android:id="@+id/button_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
-        android:background="?attr/selectableItemBackground"
-        android:textAllCaps="true"
         android:layout_gravity="bottom|end"
-        android:text="@string/button_send" />
+        android:background="?attr/selectableItemBackground"
+        android:text="@string/button_send"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent" />
 </FrameLayout>
