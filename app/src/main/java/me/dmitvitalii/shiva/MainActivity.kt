@@ -20,13 +20,13 @@ class MainActivity : AppCompatActivity() {
         // TODO: implement an IntentBuilder instead
         with(intent) {
             setAction(text_action)
-            setPackage(text_package)
+            setComponent(text_package, text_activity)
             setCategory(text_category)
         }
-        if (intent.getPackage().isNullOrEmpty()) {
-            Toast.makeText(this, "Package is required", Toast.LENGTH_SHORT).show()
-        } else {
+        if (intent.hasTarget()) {
             start(intent)
+        } else {
+            Toast.makeText(this, "Package is required", Toast.LENGTH_SHORT).show()
         }
     }
 
