@@ -19,7 +19,7 @@
             android:id="@+id/switch_components"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:checkedBackgroundColor="@color/colorAccent"
+            app:checkedBackgroundColor="@color/colorPrimary"
             app:textToggleLeft="@string/component_activity"
             app:textToggleCenter="@string/component_service"
             app:textToggleRight="@string/component_broadcast" />
@@ -31,8 +31,6 @@
         android:layout_height="wrap_content"
         android:onClick="onSendClicked"
         android:layout_gravity="bottom|end"
-        android:background="?attr/selectableItemBackground"
         android:text="@string/button_send"
-        android:textAllCaps="true"
-        android:textColor="@color/colorAccent" />
+        android:textAllCaps="true" />
 </FrameLayout>
