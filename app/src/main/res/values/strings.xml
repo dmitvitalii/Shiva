@@ -21,8 +21,8 @@
     <string name="component_broadcast">Broadcast</string>
     <string name="component_activity">Activity</string>
     <string name="component_service">Service</string>
+    <string name="intent_activity">Activity</string>
     <string name="intent_category">Category</string>
     <string name="intent_package">Package</string>
     <string name="intent_action">Action</string>
-    <string name="intent_activity">Activity</string>
 </resources>
