@@ -32,27 +32,35 @@ class TripleSwitchView : LinearLayout {
         START, CENTER, END
     }
 
-    constructor(context: Context, attr: AttributeSet? = null, styleAttr: Int = 0) : super(context, attr, styleAttr) {
+    constructor(context: Context) : super(context, null) {
+        init(context)
+    }
+
+    constructor(context: Context, attr: AttributeSet?) : super(context, attr, 0) {
+        init(context)
+    }
+
+    constructor(context: Context, attr: AttributeSet?, styleAttr: Int) : super(context, attr, styleAttr) {
         init(context)
     }
 
     @TargetApi(21)
-    constructor(context: Context, attr: AttributeSet? = null, styleAttr: Int = 0, styleRes: Int = 0)
+    constructor(context: Context, attr: AttributeSet?, styleAttr: Int, styleRes: Int)
             : super(context, attr, styleAttr, styleRes) {
         init(context)
     }
 
     private fun init(context: Context) {
         val root = LayoutInflater.from(context).inflate(R.layout.switch_view, this)
-        buttonStart  = root.findViewById(R.id.startButton)
+        buttonStart = root.findViewById(R.id.startButton)
         buttonCenter = root.findViewById(R.id.centerButton)
-        buttonEnd    = root.findViewById(R.id.endButton)
+        buttonEnd = root.findViewById(R.id.endButton)
     }
 
     fun getButton(position: Position) = when (position) {
-        Position.START  -> buttonStart
+        Position.START -> buttonStart
         Position.CENTER -> buttonCenter
-        Position.END    -> buttonEnd
+        Position.END -> buttonEnd
     }
 
     fun setOnClickListener(listener: OnClickListener, button: Position) {
