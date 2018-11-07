@@ -15,6 +15,7 @@
  */
 package me.dmitvitalii.shiva
 
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
 import android.util.AttributeSet
@@ -24,9 +25,11 @@ import android.widget.LinearLayout
 
 class TripleSwitchView : LinearLayout {
 
-    lateinit var buttonStart: Button
-    lateinit var buttonCenter: Button
-    lateinit var buttonEnd: Button
+    private var currentButton: Position = Position.START
+
+    private lateinit var buttonStart: Button
+    private lateinit var buttonCenter: Button
+    private lateinit var buttonEnd: Button
 
     enum class Position {
         START, CENTER, END
@@ -50,22 +53,33 @@ class TripleSwitchView : LinearLayout {
         init(context)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun init(context: Context) {
         val root = LayoutInflater.from(context).inflate(R.layout.switch_view, this)
         buttonStart = root.findViewById(R.id.startButton)
         buttonCenter = root.findViewById(R.id.centerButton)
         buttonEnd = root.findViewById(R.id.endButton)
+
+        buttonStart.setOnTouchListener { v, _ -> onButtonTouched(v as Button, Position.START) }
+        buttonCenter.setOnTouchListener { v, _ -> onButtonTouched(v as Button, Position.CENTER) }
+        buttonEnd.setOnTouchListener { v, _ -> onButtonTouched(v as Button, Position.END) }
     }
 
-    fun getButton(position: Position) = when (position) {
+    private fun onButtonTouched(button: Button, position: Position): Boolean {
+        currentButton = position
+        button.performClick()
+        button.isPressed = true
+        getExcept(button).forEach { it.isPressed = false }
+        return true
+    }
+
+    private fun getButton(position: Position) = when (position) {
         Position.START -> buttonStart
         Position.CENTER -> buttonCenter
         Position.END -> buttonEnd
     }
 
-    fun setOnClickListener(listener: OnClickListener, button: Position) {
-        getButton(button).setOnClickListener(listener)
-    }
+    private fun getExcept(button: Button) = arrayOf(buttonStart, buttonCenter, buttonEnd).filter { it != button }
 
     fun setText(text: String, button: Position) {
         getButton(button).text = text
