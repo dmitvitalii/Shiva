@@ -69,9 +69,9 @@ class TripleSwitchView : LinearLayout {
         currentButton = position
         button.performClick()
         button.isPressed = true
-        getExcept(button).forEach { it.isPressed = false }
+        getButtonsExcept(button).forEach { it.isPressed = false }
         return true
     }
 
-    private fun getExcept(button: Button) = arrayOf(buttonStart, buttonCenter, buttonEnd).filter { it != button }
+    private fun getButtonsExcept(button: Button) = arrayOf(buttonStart, buttonCenter, buttonEnd).filter { it != button }
 }
