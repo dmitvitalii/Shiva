@@ -45,5 +45,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun start(intent: Intent) { }
+    fun start(intent: Intent) {
+        when (switchView.currentButton) {
+            TripleSwitchView.Position.START -> startActivity(intent)
+            TripleSwitchView.Position.CENTER -> startService(intent)
+            TripleSwitchView.Position.END -> sendBroadcast(intent)
+        }
+    }
 }
