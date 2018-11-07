@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   Copyright © 2018 Vitalii Dmitriev
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,16 +24,6 @@
     android:padding="16dp">
 
     <include layout="@layout/content_main" />
-
-    <com.llollox.androidtoggleswitch.widgets.ToggleSwitch
-        android:id="@+id/switch_components"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        app:checkedBackgroundColor="@color/colorPrimary"
-        app:textToggleCenter="@string/component_service"
-        app:textToggleLeft="@string/component_activity"
-        app:textToggleRight="@string/component_broadcast" />
 
     <Button
         android:id="@+id/button_send"

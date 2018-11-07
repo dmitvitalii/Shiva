@@ -45,11 +45,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun start(intent: Intent) {
-        when (switch_components.checkedPosition) {
-            ACTIVITY  -> startActivity(intent)
-            SERVICE   -> startService(intent)
-            BROADCAST -> sendBroadcast(intent)
-        }
-    }
+    fun start(intent: Intent) { }
 }
