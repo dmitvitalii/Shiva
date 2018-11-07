@@ -31,12 +31,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onSendClicked(button: View) {
-        val intent = Intent()
         // TODO: implement an IntentBuilder instead
-        with(intent) {
+        val intent = with(Intent()) {
             setAction(text_action)
             setComponent(text_package, text_activity)
             setCategory(text_category)
+            this
         }
         if (intent.hasTarget()) {
             start(intent)
