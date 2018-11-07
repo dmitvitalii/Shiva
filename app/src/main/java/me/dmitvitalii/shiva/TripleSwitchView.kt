@@ -18,27 +18,52 @@ package me.dmitvitalii.shiva
 import android.annotation.TargetApi
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.LinearLayout
 
 class TripleSwitchView : LinearLayout {
 
-    constructor(ctx: Context, attr: AttributeSet? = null, styleAttr: Int = 0) : super(ctx, attr, styleAttr) {
-        init(ctx, attr, styleAttr)
+    lateinit var buttonStart: Button
+    lateinit var buttonCenter: Button
+    lateinit var buttonEnd: Button
+
+    enum class Position {
+        START, CENTER, END
+    }
+
+    constructor(context: Context, attr: AttributeSet? = null, styleAttr: Int = 0) : super(context, attr, styleAttr) {
+        init(context)
     }
 
     @TargetApi(21)
     constructor(context: Context, attr: AttributeSet? = null, styleAttr: Int = 0, styleRes: Int = 0)
             : super(context, attr, styleAttr, styleRes) {
-        init(context, attr, styleAttr, styleRes)
+        init(context)
     }
 
-    private fun init(context: Context, attr: AttributeSet?, styleAttr: Int, styleRes: Int = 0) {
-
+    private fun init(context: Context) {
+        val root = LayoutInflater.from(context).inflate(R.layout.switch_view, this)
+        buttonStart  = root.findViewById(R.id.startButton)
+        buttonCenter = root.findViewById(R.id.centerButton)
+        buttonEnd    = root.findViewById(R.id.endButton)
     }
 
-    fun addStartButtonClickListener(listener: OnClickListener) {}
+    fun getButton(position: Position) = when (position) {
+        Position.START  -> buttonStart
+        Position.CENTER -> buttonCenter
+        Position.END    -> buttonEnd
+    }
 
-    fun addCenterButtonClickListener(listener: OnClickListener) {}
+    fun setOnClickListener(listener: OnClickListener, button: Position) {
+        getButton(button).setOnClickListener(listener)
+    }
 
-    fun addEndButtonClickListener(listener: OnClickListener) {}
+    fun setText(text: String, button: Position) {
+        getButton(button).text = text
+    }
+
+    fun setGap(gap: Int) {
+        buttonCenter.setPaddingRelative(gap, buttonCenter.paddingTop, gap, buttonCenter.paddingBottom)
+    }
 }
