@@ -73,19 +73,5 @@ class TripleSwitchView : LinearLayout {
         return true
     }
 
-    private fun getButton(position: Position) = when (position) {
-        Position.START -> buttonStart
-        Position.CENTER -> buttonCenter
-        Position.END -> buttonEnd
-    }
-
     private fun getExcept(button: Button) = arrayOf(buttonStart, buttonCenter, buttonEnd).filter { it != button }
-
-    fun setText(text: String, button: Position) {
-        getButton(button).text = text
-    }
-
-    fun setGap(gap: Int) {
-        buttonCenter.setPaddingRelative(gap, buttonCenter.paddingTop, gap, buttonCenter.paddingBottom)
-    }
 }
