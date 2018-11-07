@@ -25,7 +25,8 @@ import android.widget.LinearLayout
 
 class TripleSwitchView : LinearLayout {
 
-    private var currentButton: Position = Position.START
+    var currentButton: Position = Position.START
+        private set
 
     private lateinit var buttonStart: Button
     private lateinit var buttonCenter: Button
