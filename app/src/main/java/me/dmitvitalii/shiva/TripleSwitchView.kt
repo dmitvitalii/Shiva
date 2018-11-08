@@ -28,9 +28,7 @@ class TripleSwitchView : LinearLayout {
     var currentButton: Position = Position.START
         private set
 
-    private lateinit var buttonStart: Button
-    private lateinit var buttonCenter: Button
-    private lateinit var buttonEnd: Button
+    private val buttons = HashMap<Button, Position>(3)
 
     enum class Position {
         START, CENTER, END
@@ -57,22 +55,19 @@ class TripleSwitchView : LinearLayout {
     @SuppressLint("ClickableViewAccessibility")
     private fun init(context: Context) {
         val root = LayoutInflater.from(context).inflate(R.layout.switch_view, this)
-        buttonStart = root.findViewById(R.id.startButton)
-        buttonCenter = root.findViewById(R.id.centerButton)
-        buttonEnd = root.findViewById(R.id.endButton)
-
-        buttonStart.setOnTouchListener { v, _ -> onButtonTouched(v as Button, Position.START) }
-        buttonCenter.setOnTouchListener { v, _ -> onButtonTouched(v as Button, Position.CENTER) }
-        buttonEnd.setOnTouchListener { v, _ -> onButtonTouched(v as Button, Position.END) }
+        buttons[root.findViewById(R.id.startButton)] = Position.START
+        buttons[root.findViewById(R.id.centerButton)] = Position.CENTER
+        buttons[root.findViewById(R.id.endButton)] = Position.END
+        buttons.forEach { it.key.setOnTouchListener { v, _ -> onButtonTouched(v as Button) } }
     }
 
-    private fun onButtonTouched(button: Button, position: Position): Boolean {
-        currentButton = position
+    private fun onButtonTouched(button: Button): Boolean {
+        currentButton = buttons[button] ?: currentButton
         button.performClick()
         button.isPressed = true
-        getButtonsExcept(button).forEach { it.isPressed = false }
+        buttons.filterNot { it.key == button }
+               .forEach { it.key.isPressed = false }
         return true
     }
 
-    private fun getButtonsExcept(button: Button) = arrayOf(buttonStart, buttonCenter, buttonEnd).filter { it != button }
 }
