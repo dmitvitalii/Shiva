@@ -22,6 +22,7 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,10 +47,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun start(intent: Intent) {
-        when (switchView.currentButton) {
-            TripleSwitchView.Position.START -> startActivity(intent)
-            TripleSwitchView.Position.CENTER -> startService(intent)
-            TripleSwitchView.Position.END -> sendBroadcast(intent)
+        try {
+            when (switchView.currentButton) {
+                TripleSwitchView.Position.START -> startActivity(intent)
+                TripleSwitchView.Position.CENTER -> startService(intent)
+                TripleSwitchView.Position.END -> sendBroadcast(intent)
+            }
+        } catch (exception: Exception) {
+            Toast.makeText(this, "Cannot do that.", Toast.LENGTH_SHORT).show()
         }
     }
 }
