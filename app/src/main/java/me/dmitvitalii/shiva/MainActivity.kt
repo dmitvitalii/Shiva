@@ -22,7 +22,6 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import java.lang.Exception
 import me.dmitvitalii.shiva.TripleSwitchView.Position
 
 class MainActivity : AppCompatActivity() {
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 Position.CENTER -> startService(intent)
                 Position.END -> sendBroadcast(intent)
             }
-        } catch (exception: Exception) {
+        } catch (exception: Throwable) {
             Toast.makeText(this, "Cannot do that.", Toast.LENGTH_SHORT).show()
         }
     }
